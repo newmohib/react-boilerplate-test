@@ -4,15 +4,26 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import { DEFAULT_ACTION,LOGIN_SUBMIT,GET_USERS,LOGIN_INPUT} from './constants';
 
-export const initialState = {};
+export const initialState = {
+  users:[],
+  loginInput:{}
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const loginReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, draft => {
+    
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case GET_USERS:
+       // console.log('LOGIN_SUBMIT: ', action.users);
+        draft.users=action.users
+        break;
+
+        case LOGIN_INPUT:
+        console.log('login change: ', action.inputObj);
+        draft.loginInput=action.inputObj
         break;
     }
   });

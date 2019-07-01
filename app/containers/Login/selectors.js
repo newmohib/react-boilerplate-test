@@ -21,5 +21,21 @@ const makeSelectLogin = () =>
     substate => substate,
   );
 
+  const makeSelectUsers = () =>
+  createSelector(
+    selectLoginDomain,
+    substate => { 
+     // console.log('selector',substate.users);
+       return substate.users},
+  );
+
+  const makeSelectLoginInput = () =>
+  createSelector(
+    selectLoginDomain,
+    substate => { 
+      // console.log('login selector',substate.loginInput);
+        return substate.loginInput},
+  );
+
 export default makeSelectLogin;
-export { selectLoginDomain };
+export { selectLoginDomain , makeSelectUsers,makeSelectLoginInput };

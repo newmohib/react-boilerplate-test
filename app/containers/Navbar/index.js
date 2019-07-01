@@ -66,25 +66,25 @@ export function Navbar(props) {
     // </div>
 
 
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="shadow bg-white rounded" >
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <button
           className="btn btn-light btn-md"
           onClick={() => props.sidebarOpenAction(true)}
         >
           <FontAwesomeIcon icon={faAlignJustify} size="lg" />
         </button>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <NavLink to="/" class="nav-link">Home <span class="sr-only">(current)</span></NavLink>
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li className="nav-item active">
+              <NavLink to="/" className="nav-link">Home <span className="sr-only">(current)</span></NavLink>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Link</a>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +97,7 @@ export function Navbar(props) {
               </div>
             </li>
           </ul>
-          <div class="form-inline my-2 my-lg-0">
+          <div className="form-inline my-2 my-lg-0">
             <NavLink to="/login" className="btn btn-outline-success mr-sm-2" >Login</NavLink>
             <NavLink to="/logout" className="btn btn-outline-success my-2 my-sm-0" >Logout</NavLink>
           </div>
