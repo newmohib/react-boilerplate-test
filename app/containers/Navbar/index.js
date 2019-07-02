@@ -98,6 +98,7 @@ export function Navbar(props) {
             </li>
           </ul>
           <div className="form-inline my-2 my-lg-0">
+            <NavLink to="/signup" className="btn btn-outline-success mr-sm-2" >Signup</NavLink>
             <NavLink to="/login" className="btn btn-outline-success mr-sm-2" >Login</NavLink>
             <NavLink to="/logout" className="btn btn-outline-success my-2 my-sm-0" >Logout</NavLink>
           </div>
