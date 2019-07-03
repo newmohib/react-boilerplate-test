@@ -8,7 +8,10 @@ import { makeSelectSignupInput } from 'containers/Signup/selectors';
 
 export function* signupSubmitApi() {
   const signupInputObj = yield select(makeSelectSignupInput());
-  console.log("input data in saga", signupInputObj);
+ // console.log("input data in saga", signupInputObj);
+   //JSON.stringify(value).split('.')[0].split('"')[1];
+   let dateString=JSON.stringify(signupInputObj.birthDate).split('.')[0].split('"')[1];
+   signupInputObj.birthDate= dateString ;
 
   let testData = {
     username:"mohib",
@@ -27,7 +30,7 @@ export function* signupSubmitApi() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(
-      testData
+      signupInputObj
     ),
   };
 

@@ -14,16 +14,19 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectSignup,{makeSelectSignupInput} from './selectors';
+import makeSelectSignup, { makeSelectSignupInput } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { SignupForm } from './signupForm';
-import {signupSubmit, onChangeSignupInput } from './actions';
+import { signupSubmit, onChangeSignupInput } from './actions';
 
 export function Signup(props) {
   useInjectReducer({ key: 'signup', reducer });
   useInjectSaga({ key: 'signup', saga });
+
+  //let { birthDate } = props.signupInputSelectors.birthDate;
+ // console.log(props.signupInputSelectors.birthDate);
 
   const validateProperty = (input) => {
     const { name, value } = input;
@@ -39,10 +42,7 @@ export function Signup(props) {
     //console.log("namew", event.target.value, event.target.name);
     let { name, value } = event.target;
     const errors = {};
-    // const errors = { ...this.state.errors };
-
-      const signupInputObj = { ...props.signupInputSelectors };
-      
+    const signupInputObj = { ...props.signupInputSelectors };
 
     const errorMessage = validateProperty(event.target);
     if (errorMessage) {
@@ -51,10 +51,41 @@ export function Signup(props) {
       delete errors[name];
     };
 
-     signupInputObj[name] = value;
-     console.log('index after update',signupInputObj);
-     props.onChangeSignup(signupInputObj);
-  
+    signupInputObj[name] = value;
+    console.log('index after update', signupInputObj);
+    props.onChangeSignup(signupInputObj);
+
+  };
+
+  const handleChangeDate = ({ currentTarget }) => {
+    const { name, value } = currentTarget
+    //console.log(name, new Date(value));
+    const errors = {};
+    const signupInputObj = { ...props.signupInputSelectors };
+
+    const errorMessage = validateProperty(event.target);
+    if (errorMessage) {
+      errors[name] = "Required";
+    } else {
+      delete errors[name];
+    };
+   // console.log(value.split('.'));
+    //console.log( typeof JSON.stringify(value) );
+    //console.log(value.toLocaleString());
+    // signupInputObj[name] = new Date(value);
+   var  testvalue=value;
+
+    // if (typeof value=="object") {
+      
+    //    testvalue= JSON.stringify(value).split('.')[0].split('"')[1];
+    // }
+
+    signupInputObj[name] = new Date(testvalue);
+    props.onChangeSignup(signupInputObj);
+   // console.log(props.signupInputSelectors);
+    
+    console.log(typeof testvalue);
+    
   };
 
 
@@ -67,13 +98,13 @@ export function Signup(props) {
       let value = entry[1]
       formObject[name] = value;
     }
-   // console.log(formObject);
+    // console.log(formObject);
 
-   // const loginInputObj = { ...props.loginInput };
+    // const loginInputObj = { ...props.loginInput };
 
     props.signupSubmitToAction();
 
-   // console.log(loginInputObj);
+    // console.log(loginInputObj);
   }
 
   return (
@@ -82,9 +113,9 @@ export function Signup(props) {
         <title>Signup</title>
         <meta name="description" content="Description of Signup" />
       </Helmet>
-      <div className="container form-wrapper" style={{ height: "calc(100vh - 65px)" }}>
+      <div className="container mt-5 form-wrapper" >
         <div className="row justify-content-center h-100" >
-          <div className="col-10 col-lg-6 col-md-8 col-sm-10 h-100 d-flex align-items-center">
+          <div className="col-10 col-lg-10 col-md-10 col-sm-12 ">
             <div className="form-container formStyle">
               <h3 className="text-center headerStyle">Login</h3>
               <div className="container">
@@ -92,6 +123,8 @@ export function Signup(props) {
                 <SignupForm
                   handleSubmit={handleSubmit}
                   handleChange={handleChange}
+                  handleChangeDate={handleChangeDate}
+                  birthDateValue  ={props.signupInputSelectors.birthDate}
                 ></SignupForm>
               </div>
             </div>
@@ -108,7 +141,7 @@ Signup.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   signup: makeSelectSignup(),
-  signupInputSelectors :makeSelectSignupInput(),
+  signupInputSelectors: makeSelectSignupInput(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -6,3 +6,11 @@
     box-shadow: 0px 0px 50px 0px #8a66b941; 
     background-color:white; 
 }
+
+.react-datepicker__input-container{
+    display: inline !important ;
+}
+.react-datepicker-wrapper{
+    display: inline !important;
+  
+}
