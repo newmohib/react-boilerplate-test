@@ -84,7 +84,7 @@ export function Navbar(props) {
               <NavLink to="/" className="nav-link">Home <span className="sr-only">(current)</span></NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Link</a>
+            <NavLink to="/viewUsers" className="nav-link">User List </NavLink>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
