@@ -6,10 +6,17 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
+import React,{useEffect,memo} from 'react';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+
+import {makeSelectIsAuthorization} from './selectors';
+import {setAuthorizationToken} from './actions';
+import {getFromStore} from '../../utils/localstorage';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -36,11 +43,20 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function App() {
+  function App(props) {
+  
+    useEffect(() => {
+      let getAuthorizationTokenToLocalstorage = getFromStore("isAuthorization");
+
+      if (getAuthorizationTokenToLocalstorage) {
+        props.setAuthorToken(getAuthorizationTokenToLocalstorage);
+      }
+    }, [props.isAuthorization]);
+
   return (
     <div>
       <SideBar />
-      <Navbar />
+       <Navbar />
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -70,3 +86,25 @@ export default function App() {
     </div>
   );
 }
+
+
+const mapStateToProps = createStructuredSelector({
+  isAuthorization: makeSelectIsAuthorization(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setAuthorToken: value => dispatch(setAuthorizationToken(value)),
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+
+export default compose(
+  withConnect,
+  memo,
+)(App);

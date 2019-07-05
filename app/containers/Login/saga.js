@@ -4,6 +4,8 @@ import { getUsers } from './actions';
 import request from 'utils/request';
 import {  LOGIN_SUBMIT } from './constants';
 import { makeSelectLoginInput } from 'containers/Login/selectors';
+import { setToStore } from '../../utils/localstorage';
+import { setAuthorizationToken } from 'containers/App/actions';
 
 
 // const apiInfo = [
@@ -66,6 +68,10 @@ export function* logniSubmitApi() {
   const requestURL = `http://localhost:4000/login`;
   const responseUsers = yield call(request, requestURL,options);
   console.log("after submit",responseUsers);
+  let getToken=responseUsers.isAuthorization;
+  //set to localstorage
+  setToStore("isAuthorization" , getToken);
+  yield put(setAuthorizationToken(getToken));
   yield put(getUsers(responseUsers));
 
 }
@@ -75,5 +81,4 @@ export default function* loginSaga()  {
   yield callApi();
   yield takeLatest(LOGIN_SUBMIT, logniSubmitApi);
 
-}
-
+};

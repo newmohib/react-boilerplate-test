@@ -39,6 +39,12 @@ const makeSelectLocation = () =>
     routerState => routerState.location,
   );
 
+  const makeSelectIsAuthorization = () =>
+  createSelector(
+    selectGlobal,
+    routerState => routerState.isAuthorization,
+  );
+  
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -46,4 +52,5 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
+  makeSelectIsAuthorization,
 };
