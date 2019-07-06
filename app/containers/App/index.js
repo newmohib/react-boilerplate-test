@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React,{useEffect,memo} from 'react';
+import React, { useEffect, memo } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
@@ -14,16 +14,12 @@ import { Switch, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import {makeSelectIsAuthorization} from './selectors';
-import {setAuthorizationToken} from './actions';
-import {getFromStore} from '../../utils/localstorage';
-
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-//custom
+// custom
 import SideBar from 'containers/SideBar/Loadable';
 import Navbar from 'containers/Navbar/Loadable';
 import CustomFooter from 'containers/CustomFooter/Loadable';
@@ -31,6 +27,10 @@ import Dashboard from 'containers/Dashboard/Loadable';
 import Login from 'containers/Login/Loadable';
 import Signup from 'containers/Signup/Loadable';
 import ViewUsers from 'containers/ViewUsers/Loadable';
+import Logout from 'containers/Logout/Loadable';
+import { getFromStore } from '../../utils/localstorage';
+import { setAuthorizationToken } from './actions';
+import { makeSelectIsAuthorization } from './selectors';
 
 import GlobalStyle from '../../global-styles';
 
@@ -43,20 +43,21 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-  function App(props) {
-  
-    useEffect(() => {
-      let getAuthorizationTokenToLocalstorage = getFromStore("isAuthorization");
+function App(props) {
+  console.log('root reload');
+  const { isAuthorization, setAuthorToken } = props;
+  useEffect(() => {
+    const getAuthorizationTokenToLocalstorage = getFromStore('isAuthorization');
 
-      if (getAuthorizationTokenToLocalstorage) {
-        props.setAuthorToken(getAuthorizationTokenToLocalstorage);
-      }
-    }, [props.isAuthorization]);
+    if (getAuthorizationTokenToLocalstorage) {
+      setAuthorToken(getAuthorizationTokenToLocalstorage);
+    }
+  }, [isAuthorization]);
 
   return (
     <div>
       <SideBar />
-       <Navbar />
+      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -65,12 +66,16 @@ const AppWrapper = styled.div`
                 titleTemplate="%s - React.js Boilerplate"
                 defaultTitle="React.js Boilerplate"
               >
-                <meta name="description" content="A React.js Boilerplate application" />
+                <meta
+                  name="description"
+                  content="A React.js Boilerplate application"
+                />
               </Helmet>
               {/* <Header /> */}
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/logout" component={Logout} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/viewUsers" component={ViewUsers} />
                 <Route path="/features" component={FeaturePage} />
@@ -87,7 +92,6 @@ const AppWrapper = styled.div`
   );
 }
 
-
 const mapStateToProps = createStructuredSelector({
   isAuthorization: makeSelectIsAuthorization(),
 });
@@ -102,7 +106,6 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
-
 
 export default compose(
   withConnect,
