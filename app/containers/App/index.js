@@ -106,7 +106,6 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
-
 export default compose(
   withConnect,
   memo,
