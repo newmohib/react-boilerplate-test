@@ -35,7 +35,7 @@ export function* signupSubmitApi() {
   };
 
   // const requestURL = `https://jsonplaceholder.typicode.com/posts`;
-  const requestURL = `http://localhost:4000/signup`;
+  const requestURL = `http://localhost:4000/public/register`;
   const responseUsers = yield call(request, requestURL, options);
   console.log("after submit", responseUsers);
   //insertId,serverStatus:2, affectedRows,
