@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
 import { Input, DateInput, Select } from 'components/Form';
+import  SocialLogin  from '../SocialLogin';
 
 
 export const LoginForm = React.memo((props) => {
     const { handleSubmit, handleChange } = props;
     return (
+        <div>
         <form onSubmit={handleSubmit} >
             <div className="row">
                 <div className="col-12 col-lg-12 col-md-12 col-sm-12 errorStyle">
@@ -36,5 +38,7 @@ export const LoginForm = React.memo((props) => {
                 </div>
             </div>
         </form>
+        <SocialLogin />
+        </div>
     )
 })

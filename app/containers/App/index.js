@@ -71,7 +71,6 @@ function App(props) {
                   content="A React.js Boilerplate application"
                 />
               </Helmet>
-              {/* <Header /> */}
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/login" component={Login} />
@@ -81,7 +80,6 @@ function App(props) {
                 <Route path="/features" component={FeaturePage} />
                 <Route path="" component={NotFoundPage} />
               </Switch>
-              {/* <Footer /> */}
               <GlobalStyle />
             </AppWrapper>
           </div>
