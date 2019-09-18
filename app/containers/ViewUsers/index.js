@@ -29,7 +29,23 @@ export function ViewUsers() {
         <title>ViewUsers</title>
         <meta name="description" content="Description of ViewUsers" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
+      <div
+        className="container form-wrapper"
+        style={{ height: 'calc(100vh - 65px)' }}
+      >
+        <div className="row justify-content-center h-100">
+          <div className="col-10 col-lg-6 col-md-8 col-sm-10 h-100 d-flex align-items-center">
+            <div className="form-container formStyle">
+              
+              <div className="container">
+              <h3 className="text-center headerStyle"><FormattedMessage {...messages.header} /></h3>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 }

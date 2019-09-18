@@ -32,7 +32,7 @@ export const LoginForm = React.memo((props) => {
                     />
                 </div>
             </div>
-            <div className="row justify-content-center mt-4" >
+            <div className="row justify-content-center mt-2" >
                 <div className="col-12 ">
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </div>

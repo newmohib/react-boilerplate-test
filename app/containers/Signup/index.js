@@ -113,7 +113,28 @@ export function Signup(props) {
         <title>Signup</title>
         <meta name="description" content="Description of Signup" />
       </Helmet>
-      <div className="container mt-5 form-wrapper" >
+      <div
+        className="container form-wrapper"
+        style={{ height: 'calc(100vh - 65px)' }}
+      >
+        <div className="row justify-content-center h-100">
+          <div className="col-10 col-lg-8 col-md-8 col-sm-10 h-100 d-flex align-items-center">
+            <div className="form-container formStyle">
+              <h3 className="text-center headerStyle">Signup</h3>
+              <div className="container">
+                <hr />
+                <SignupForm
+                  handleSubmit={handleSubmit}
+                  handleChange={handleChange}
+                  handleChangeDate={handleChangeDate}
+                  birthDateValue  ={props.signupInputSelectors.birthDate}
+                ></SignupForm>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="container mt-5 form-wrapper" >
         <div className="row justify-content-center h-100" >
           <div className="col-10 col-lg-10 col-md-10 col-sm-12 ">
             <div className="form-container formStyle">
@@ -130,7 +151,7 @@ export function Signup(props) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

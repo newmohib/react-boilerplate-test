@@ -17,14 +17,22 @@ import makeSelectSocialLogin from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import SocialLoginButton from './socialLoginButton';
 
 export function SocialLogin() {
   useInjectReducer({ key: 'socialLogin', reducer });
   useInjectSaga({ key: 'socialLogin', saga });
 
+ const loginSuccess = (response) => {
+    console.log("success", response);
+  }
+ const loginFailure= (response) => {
+    console.log("fail",response);
+  }
+
   return (
-    <div>
-      <FormattedMessage {...messages.header} />
+    <div className="mt-2">
+      <SocialLoginButton loginSuccess={ loginSuccess} loginFailure={loginFailure}  />
     </div>
   );
 }
