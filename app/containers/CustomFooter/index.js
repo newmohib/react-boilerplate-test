@@ -18,6 +18,7 @@ import makeSelectCustomFooter from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import SocialFooterButton from './socialFooterButton';
 
 export function CustomFooter() {
   useInjectReducer({ key: 'customFooter', reducer });
@@ -27,18 +28,19 @@ export function CustomFooter() {
     <StickyFooter
       bottomThreshold={50}
       normalStyles={{
-        backgroundColor: "#999999",
-        padding: "2rem"
+        backgroundColor: 'rgb(235, 235, 235)',
+        boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+        padding: '2rem',
       }}
       stickyStyles={{
-        backgroundColor: "rgba(255,255,255,.8)",
-        padding: "2rem"
+        backgroundColor: 'rgba(255,255,255,.8)',
+        padding: '2rem',
       }}
     >
       <div className="container ">
         <div className="row justify-content-center">
-          <div className="col-2">
-            <h4 className="text-light">Footer</h4>
+          <div className="col-12">
+            <SocialFooterButton />
           </div>
         </div>
       </div>
