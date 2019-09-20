@@ -1,50 +1,46 @@
 /**
  *
- * SocialLogin
+ * PayPal
  *
  */
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectSocialLogin from './selectors';
+import makeSelectPayPal from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import SocialLoginButton from './socialLoginButton';
+import PaypalButton from './paypalButton';
 
-
-export function SocialLogin() {
-  useInjectReducer({ key: 'socialLogin', reducer });
-  useInjectSaga({ key: 'socialLogin', saga });
-
- const loginSuccess = (response) => {
-    console.log("success", response);
-  }
- const loginFailure= (response) => {
-    console.log("fail",response);
-  }
+export function PayPal() {
+  useInjectReducer({ key: 'payPal', reducer });
+  useInjectSaga({ key: 'payPal', saga });
 
   return (
-    <div className="mt-2">
-      <SocialLoginButton loginSuccess={ loginSuccess} loginFailure={loginFailure}  />
-
+    <div>
+      <Helmet>
+        <title>PayPal</title>
+        <meta name="description" content="Description of PayPal" />
+      </Helmet>
+      <PaypalButton />
     </div>
   );
 }
 
-SocialLogin.propTypes = {
+PayPal.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  socialLogin: makeSelectSocialLogin(),
+  payPal: makeSelectPayPal(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -61,4 +57,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(SocialLogin);
+)(PayPal);
