@@ -98,6 +98,7 @@
     "react-router-dom": "5.0.0",
     "react-share": "^3.0.1",
     "react-sidebar": "^3.0.2",
+    "react-social-login": "^3.4.4",
     "react-sticky-footer": "0.1.0-rc3",
     "redux": "4.0.1",
     "redux-saga": "1.0.2",
