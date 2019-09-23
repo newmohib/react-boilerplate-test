@@ -26,6 +26,9 @@ export function SocialLogin() {
 
  const loginSuccess = (response) => {
     console.log("success", response);
+    //google,facebook : _profile:{email: "mohibidb@gmail.com",firstName: "Mohibur",id: "118159492201761834379",lastName: "Rahman",name:"Mohibur Rahman"}
+    //googel,facebook : _provider:"google", "facebook"
+    //
   }
  const loginFailure= (response) => {
     console.log("fail",response);
