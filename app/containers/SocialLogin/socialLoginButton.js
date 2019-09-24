@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { FaFacebook, FaGithub, FaLinkedin, FaGoogle } from 'react-icons/fa';
+import  {googleClientId,facebookAppid}  from "../../config";
 import CustomSocialButton from './customSocialButton'
 import './socialLogin.css';
 
@@ -12,19 +13,20 @@ class SocialLoginButton extends Component {
     };
 
     render() {
+        console.log(process.env.GOOGLE_CLIENTID);
         const { loginSuccess, loginFailure } = this.props;
         return (
             <div className="container">
                 <div className="row justify-content-center">
                     <GoogleLogin
-                        clientId="909305170958-gqfn20l33jdp39agblp9dh2t487hsi7p.apps.googleusercontent.com"
+                        clientId={googleClientId}
                         buttonText="Log in with Google"
                         onSuccess={loginSuccess}
                         onFailure={loginFailure}
                         cookiePolicy="single_host_origin"
                     />
                     <FacebookLogin
-                        appId="421566771930364"
+                        appId={facebookAppid}
                         autoLoad={false}
                         textButton="Log in with Facebook"
                         cssClass="kep-login-facebook"

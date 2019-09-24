@@ -4,6 +4,15 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
+const env = dotenv.config().parsed;
+
+  //env config from
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+  //env config from
 
 module.exports = options => ({
   mode: options.mode,
@@ -107,6 +116,7 @@ module.exports = options => ({
       },
     ],
   },
+  
   plugins: options.plugins.concat([
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; Terser will automatically
@@ -114,6 +124,9 @@ module.exports = options => ({
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    //env config from
+    new webpack.DefinePlugin(envKeys),
+    //env config to
   ]),
   resolve: {
     modules: ['node_modules', 'app'],

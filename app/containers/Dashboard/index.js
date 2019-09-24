@@ -23,7 +23,6 @@ import PayPalButton from '../PayPal';
 export function Dashboard() {
   useInjectReducer({ key: 'dashboard', reducer });
   useInjectSaga({ key: 'dashboard', saga });
-
   return (
     <div>
       <Helmet>

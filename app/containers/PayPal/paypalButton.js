@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PayPalButton } from "react-paypal-button-v2";
+import  {paypalClientId}  from "../../config";
 
 class PaypalButton extends Component {
     state = {}
@@ -40,7 +41,7 @@ class PaypalButton extends Component {
                     onSuccess={paymentSuccess}
                     catchError={paymentFailure}
                     options={{
-                        clientId: "AR2BI5NXg-kFynJWAoaUP_90FKOVcmGnM5vSEIwFSkxUAUe1FS5ZatR_BS-qKDwgXGAMXw7zM-4ZG0F9",
+                        clientId:paypalClientId,
                         currency: "USD"
                       }}
                 />
