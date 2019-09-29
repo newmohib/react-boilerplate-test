@@ -59,6 +59,7 @@ class PaypalButton extends Component {
     const onCancel = () => {
       console.log('cancel');
     };
+    let totalAmount=1;
 
     return (
       <div>
@@ -78,7 +79,7 @@ class PaypalButton extends Component {
             production: paypalClientId,
           }}
           currency="USD"
-          total="1"
+          total={totalAmount}
           onError={paymentFailure}
           onSuccess={paymentSuccess}
           onCancel={onCancel}
