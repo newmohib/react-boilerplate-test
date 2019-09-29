@@ -54,6 +54,8 @@ function App(props) {
     }
   }, [isAuthorization]);
 
+  const githubDeployPath=process.env.GITHUB_DEPLOY_PATH?process.env.GITHUB_DEPLOY_PATH:'';
+
   return (
     <div>
       <SideBar />
@@ -72,13 +74,13 @@ function App(props) {
                 />
               </Helmet>
               <Switch>
-                <Route exact path="/" component={Dashboard} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/logout" component={Logout} />
-                <Route exact path="/signup" component={Signup} />
-                <Route exact path="/viewUsers" component={ViewUsers} />
-                <Route path="/features" component={FeaturePage} />
-                <Route path="" component={NotFoundPage} />
+                <Route exact path={`${githubDeployPath}/`} component={Dashboard} />
+                <Route exact path={`${githubDeployPath}/login`} component={Login} />
+                <Route exact path={`${githubDeployPath}/logout`} component={Logout} />
+                <Route exact path={`${githubDeployPath}/signup`} component={Signup} />
+                <Route exact path={`${githubDeployPath}/viewUsers`} component={ViewUsers} />
+                <Route path={`${githubDeployPath}/features`} component={FeaturePage} />
+                <Route path={`${githubDeployPath}""`} component={NotFoundPage} />
               </Switch>
               <GlobalStyle />
             </AppWrapper>
