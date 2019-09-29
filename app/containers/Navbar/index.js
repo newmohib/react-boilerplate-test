@@ -27,6 +27,8 @@ export function Navbar(props) {
   useInjectReducer({ key: 'navbar', reducer });
   useInjectSaga({ key: 'navbar', saga });
 
+  const githubDeployPath=process.env.GITHUB_DEPLOY_PATH?process.env.GITHUB_DEPLOY_PATH:'';
+
   return (
     // <div className="shadow-sm bg-white rounded">
     //   <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,44 +69,44 @@ export function Navbar(props) {
 
 
     <div className="shadow bg-white rounded" >
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <button
-          className="btn btn-light btn-md"
-          onClick={() => props.sidebarOpenAction(true)}
-        >
-          <FontAwesomeIcon icon={faAlignJustify} size="lg" />
-        </button>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <button
+        className="btn btn-light btn-md"
+        onClick={() => props.sidebarOpenAction(true)}
+      >
+        <FontAwesomeIcon icon={faAlignJustify} size="lg" />
+      </button>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
 
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item active">
-              <NavLink to="/" className="nav-link">Home <span className="sr-only">(current)</span></NavLink>
-            </li>
-            <li className="nav-item">
-            <NavLink to="/viewUsers" className="nav-link">User List </NavLink>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
-        </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a className="dropdown-item" href="#">Action</a>
-                <a className="dropdown-item" href="#">Another action</a>
-                <a className="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-          <div className="form-inline my-2 my-lg-0">
-            <NavLink to="/signup" className="btn btn-outline-success btn-sm mr-sm-2" >Signup</NavLink>
-            <NavLink to="/login" className="btn btn-outline-success btn-sm mr-sm-2" >Login</NavLink>
-            <NavLink to="/logout" className="btn btn-outline-success btn-sm my-2 my-sm-0" >Logout</NavLink>
-          </div>
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item active">
+            <NavLink to={`${githubDeployPath}/`} className="nav-link">Home <span className="sr-only">(current)</span></NavLink>
+          </li>
+          <li className="nav-item">
+          <NavLink to={`${githubDeployPath}/viewUsers`} className="nav-link">User List </NavLink>
+          </li>
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown link
+      </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a className="dropdown-item" href="#">Action</a>
+              <a className="dropdown-item" href="#">Another action</a>
+              <a className="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <div className="form-inline my-2 my-lg-0">
+          <NavLink to={`${githubDeployPath}/signup`} className="btn btn-outline-success btn-sm mr-sm-2" >Signup</NavLink>
+          <NavLink to={`${githubDeployPath}/login`} className="btn btn-outline-success btn-sm mr-sm-2" >Login</NavLink>
+          <NavLink to={`${githubDeployPath}/logout`}  className="btn btn-outline-success btn-sm my-2 my-sm-0" >Logout</NavLink>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
+  </div>
   );
 }
 
