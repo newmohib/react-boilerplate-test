@@ -12,6 +12,7 @@
   },
   "author": "Max Stoiber",
   "license": "MIT",
+  "homepage": "https://newmohib.github.io/react-boilerplate-test/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
