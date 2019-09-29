@@ -38,8 +38,12 @@ export function Dashboard() {
             <div className="form-container formStyle">
 
               <div className="container">
-                <h3 className="text-center headerStyle"><FormattedMessage {...messages.header} /></h3>
-                <PayPalButton />
+                <div className="row justify-content-center">
+                  <div className="col-12">
+                    <h3 className="text-center headerStyle"><FormattedMessage {...messages.header} /></h3>
+                    <PayPalButton />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
