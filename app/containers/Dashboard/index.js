@@ -24,54 +24,62 @@ export function Dashboard() {
   useInjectReducer({ key: 'dashboard', reducer });
   useInjectSaga({ key: 'dashboard', saga });
 
-  const sslinitial=()=> {
-    var loader = function () {
-      var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-      script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+  const sslinitial = () => {
+    const loader = function() {
+      const script = document.createElement('script');
+      const tag = document.getElementsByTagName('script')[0];
+      script.src = `https://sandbox.sslcommerz.com/embed.min.js?${Math.random()
+        .toString(36)
+        .substring(7)}`;
       tag.parentNode.insertBefore(script, tag);
-    }
+    };
 
-    window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-  }
+    window.addEventListener
+      ? window.addEventListener('load', loader, false)
+      : window.attachEvent('onload', loader);
+  };
   sslinitial();
-  let paymentData = [{
-    store_id: 'brain5d8d26a896766',
-    store_passwd: 'brain5d8d26a896766@ssl',
-    total_amount: 100,
-    currency: 'BD',
-    tran_id: 'REF1231354',
-    success_url: 'http://localhost.8080',
-    fail_url: 'http://localhost.8080',
-    cancel_url: 'http://localhost.8080',
-    shipping_method: 'Courier',
-    num_of_item:2,
-    product_name: 'Computer.',
-    product_category: 'Electronic',
-    emi_option:1,
-    product_profile: 'general',
-    cus_name: 'Customer Name',
-    cus_email: 'cust@yahoo.com',
-    cus_add1: 'Dhaka',
-    cus_add2: 'Dhaka',
-    cus_city: 'Dhaka',
-    cus_state: 'Dhaka',
-    cus_postcode: '1000',
-    cus_country: 'Bangladesh',
-    cus_phone: '01711111111',
-    cus_fax: '01711111111',
-    ship_name: 'Customer Name',
-    ship_add1: 'Dhaka',
-    ship_add2: 'Dhaka',
-    ship_city: 'Dhaka',
-    ship_state: 'Dhaka',
-    ship_postcode: 1000,
-    ship_country: 'Bangladesh',
-    multi_card_name: 'mastercard',
-    value_a: 'ref001_A',
-    value_b: 'ref002_B',
-    value_c: 'ref003_C',
-    value_d: 'ref004_D'
-  }]
+  const paymentData = [
+    {
+      store_id: 'brain5d91a58f56caf',
+      store_passwd: 'brain5d91a58f56caf@ssl',
+      total_amount: 100,
+      currency: 'BD',
+      tran_id: 'REF1231354',
+      success_url: 'https://newmohib.github.io',
+      fail_url: 'https://newmohib.github.io',
+      cancel_url: 'https://newmohib.github.io',
+      shipping_method: 'Courier',
+      num_of_item: 2,
+      product_name: 'Computer.',
+      product_category: 'Electronic',
+      emi_option: 1,
+      product_profile: 'general',
+      cus_name: 'Customer Name',
+      cus_email: 'cust@yahoo.com',
+      cus_add1: 'Dhaka',
+      cus_add2: 'Dhaka',
+      cus_city: 'Dhaka',
+      cus_state: 'Dhaka',
+      cus_postcode: '1000',
+      cus_country: 'Bangladesh',
+      cus_phone: '01711111111',
+      cus_fax: '01711111111',
+      ship_name: 'Customer Name',
+      ship_add1: 'Dhaka',
+      ship_add2: 'Dhaka',
+      ship_city: 'Dhaka',
+      ship_state: 'Dhaka',
+      ship_postcode: 1000,
+      ship_country: 'Bangladesh',
+      multi_card_name: 'mastercard',
+      value_a: 'ref001_A',
+      value_b: 'ref002_B',
+      value_c: 'ref003_C',
+      value_d: 'ref004_D',
+    },
+  ];
+  // https://sandbox.sslcommerz.com/validator/api/merchantTransIDvalidationAPI.php?tran_id=59C2A4F6432F8&store_id=brain5d91a58f56caf&store_passwd=brain5d91a58f56caf@ssl&format=json
   return (
     <div>
       <Helmet>
@@ -88,14 +96,21 @@ export function Dashboard() {
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-12">
-                    <h3 className="text-center headerStyle"><FormattedMessage {...messages.header} /></h3>
+                    <h3 className="text-center headerStyle">
+                      <FormattedMessage {...messages.header} />
+                    </h3>
                     <div className="text-center">
                       <PayPalButton />
-                      <button className="your-button-class" id="sslczPayBtn"
+                      <button
+                        className="your-button-class"
+                        id="sslczPayBtn"
                         token=""
                         postdata={paymentData}
                         order="ABCD1234"
-                        endpoint="https://sandbox.sslcommerz.com/validator/api/merchantTransIDvalidationAPI.php?tran_id=59C2A4F6432F8&store_id=brain5d8d26a896766&store_passwd=brain5d8d26a896766@ssl&format=json"> Pay Now
+                        endpoint="https://sandbox.sslcommerz.com/gwprocess/v3/api.php"
+                      >
+                        {' '}
+                        Pay Now
                       </button>
                     </div>
                   </div>
