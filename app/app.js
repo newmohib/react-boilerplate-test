@@ -19,9 +19,17 @@ import 'sanitize.css/sanitize.css';
 import './css/globalStylesheet.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import '../node_modules/jquery/dist/jquery.min';
-import '../node_modules/popper.js/dist/umd/popper';
-import '../node_modules/bootstrap/dist/js/bootstrap';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+// import 'jquery/dist/jquery.min';
+// import 'popper.js/dist/umd/popper';
+// import 'bootstrap/dist/js/bootstrap';
+// import 'bootstrap/dist/js/bootstrap.bundle.js';
+
+
+//bootstrap.bundle.js
 
 //version 4.7.0
 //<i  style={{cursor:"pointer"}} className="fa fa-heart-o" aria-hidden="true"></i>
